@@ -1,0 +1,12 @@
+server:
+  error:
+    whitelabel:
+      enabled: false
+    include-binding-errors: never
+    include-message: never
+    include-path: never
+    include-stacktrace: never
+
+logging:
+  level:
+    org.springframework.boot.autoconfigure.jdbc: DEBUG
