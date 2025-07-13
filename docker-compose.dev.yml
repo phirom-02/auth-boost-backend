@@ -23,7 +23,7 @@ services:
 
   app:
     build: .
-    container_name: auth-boost-backend-prod
+    container_name: auth-boost-backend-dev
     ports:
       - "8081:8080"
     environment:
