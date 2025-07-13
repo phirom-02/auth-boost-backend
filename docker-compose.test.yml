@@ -3,12 +3,12 @@ services:
     image: postgres:latest
     container_name: pg_auth-boost
     environment:
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
-      POSTGRES_DB: ${DATABASE_NAME}
-      PORT: ${DATABASE_PORT:-5435}
+      POSTGRES_USER: ${TEST_DATABASE_USER}
+      POSTGRES_PASSWORD: ${TEST_DATABASE_PASSWORD}
+      POSTGRES_DB: ${TEST_DATABASE_NAME}
+      PORT: ${TEST_DATABASE_PORT:-5437}
     ports:
-      - "${DATABASE_PORT:-5435}:5432"
+      - "${DATABASE_PORT:-5437}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always
@@ -17,19 +17,19 @@ services:
     image: axllent/mailpit
     container_name: mail_auth-boost
     ports:
-      - "1025:1025" # SMTP
-      - "8025:8025" # Web UI for interactions
+      - "1027:1025" # SMTP
+      - "8027:8025" # Web UI for interactions
     restart: unless-stopped
 
   app:
     build: .
-    container_name: auth-boost-backend
+    container_name: auth-boost-backend-test
     ports:
-      - "8080:8080"
+      - "8082:8080"
     environment:
-      SPRING_DATASOURCE_URL: ${DATABASE_URL}
-      SPRING_DATASOURCE_USERNAME: ${DATABASE_USER}
-      SPRING_DATASOURCE_PASSWORD: ${DATABASE_PASSWORD}
+      SPRING_DATASOURCE_URL: ${TEST_DATABASE_URL}
+      SPRING_DATASOURCE_USERNAME: ${TEST_DATABASE_USER}
+      SPRING_DATASOURCE_PASSWORD: ${TEST_DATABASE_PASSWORD}
       SPRING_MAIL_HOST: mail_auth-boost
       SPRING_MAIL_PORT: 1025
     depends_on:
