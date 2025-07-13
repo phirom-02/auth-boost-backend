@@ -6,19 +6,20 @@ services:
       POSTGRES_USER: ${DEV_DATABASE_USER}
       POSTGRES_PASSWORD: ${DEV_DATABASE_PASSWORD}
       POSTGRES_DB: ${DEV_DATABASE_NAME}
-      PORT: ${DEV_DATABASE_PORT:-5436}
+      PORT: ${DEV_DATABASE_PORT:-5435}
     ports:
-      - "${DEV_DATABASE_PORT:-5436}:5432"
+      - "${DEV_DATABASE_PORT:-5435}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always
+        ;
 
   mail_auth-boost:
     image: axllent/mailpit
     container_name: mail_auth-boost
     ports:
-      - "1026:1025" # SMTP
-      - "8026:8025" # Web UI for interactions
+      - "1025:1025" # SMTP
+      - "8025:8025" # Web UI for interactions
     restart: unless-stopped
 
   app:
