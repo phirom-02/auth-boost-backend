@@ -1,0 +1,32 @@
+services:
+  pg_auth-boost:
+    image: postgres:latest
+    container_name: pg_auth-boost
+    environment:
+      POSTGRES_USER: ${PROD_DATABASE_USER}
+      POSTGRES_PASSWORD: ${PROD_DATABASE_PASSWORD}
+      POSTGRES_DB: ${PROD_DATABASE_NAME}
+      PORT: ${PROD_DATABASE_PORT:-5435}
+    ports:
+      - "${PROD_DATABASE_PORT:-5435}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  app:
+    build: .
+    container_name: auth-boost-backend-prod
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: ${PROD_DATABASE_URL}
+      SPRING_DATASOURCE_USERNAME: ${PROD_DATABASE_USER}
+      SPRING_DATASOURCE_PASSWORD: ${PROD_DATABASE_PASSWORD}
+      # TODO: configure mail service for production
+    depends_on:
+      - pg_auth-boost
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
