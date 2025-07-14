@@ -4,19 +4,19 @@ import com.geekybyte.auth_boost_backend.tenant.Tenant;
 import com.geekybyte.auth_boost_backend.tenant.TenantRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
-public class FindAllTenantsServiceImpl implements FindAllTenantsService {
+public class FindTenantByIdServiceImpl implements FindTenantByIdService {
 
     private final TenantRepository tenantRepository;
 
-    public FindAllTenantsServiceImpl(TenantRepository tenantRepository) {
+    public FindTenantByIdServiceImpl(TenantRepository tenantRepository) {
         this.tenantRepository = tenantRepository;
     }
 
     @Override
-    public List<Tenant> findAllTenants() {
-        return tenantRepository.findAll();
+    public Optional<Tenant> findTenantById(int id) {
+        return tenantRepository.findById(id);
     }
 }
