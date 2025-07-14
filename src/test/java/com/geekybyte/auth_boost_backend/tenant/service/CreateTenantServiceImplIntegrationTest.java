@@ -1,5 +1,6 @@
 package com.geekybyte.auth_boost_backend.tenant.service;
 
+import com.geekybyte.auth_boost_backend.BaseTest;
 import com.geekybyte.auth_boost_backend.tenant.Tenant;
 import com.geekybyte.auth_boost_backend.tenant.TenantRepository;
 import com.geekybyte.auth_boost_backend.tenant.dto.CreateTenantDto;
@@ -21,7 +22,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 @Testcontainers
 @Transactional
-public class CreateTenantServiceImplIntegrationTest {
+public class CreateTenantServiceImplIntegrationTest extends BaseTest {
 
     @Container
     @ServiceConnection

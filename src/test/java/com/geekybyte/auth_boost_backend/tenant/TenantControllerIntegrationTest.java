@@ -1,5 +1,6 @@
 package com.geekybyte.auth_boost_backend.tenant;
 
+import com.geekybyte.auth_boost_backend.BaseTest;
 import com.geekybyte.auth_boost_backend.tenant.dto.CreateTenantDto;
 import com.geekybyte.auth_boost_backend.tenant.dto.UpdateTenantDto;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Transactional
-public class TenantControllerIntegrationTest {
+public class TenantControllerIntegrationTest extends BaseTest {
 
     @Container
     @ServiceConnection
@@ -37,7 +38,7 @@ public class TenantControllerIntegrationTest {
     @Test
     void shouldReturnAllTenants() {
         Tenant[] tenants = restTemplate.getForObject("/tenants", Tenant[].class);
-        assertThat(tenants.length).isEqualTo(100);
+        assertThat(tenants.length).isEqualTo(1);
     }
 
     @Test
@@ -61,7 +62,7 @@ public class TenantControllerIntegrationTest {
         ResponseEntity<Tenant> response = restTemplate.exchange("/tenants", HttpMethod.POST, new HttpEntity<CreateTenantDto>(dto), Tenant.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(response.getBody()).isNotNull();
-        assertThat(Objects.requireNonNull(response.getBody()).getId()).isEqualTo(101);
+        assertThat(Objects.requireNonNull(response.getBody()).getId()).isEqualTo(1);
         assertThat(Objects.requireNonNull(response.getBody()).getUsername()).isEqualTo("tenant_1");
         assertThat(Objects.requireNonNull(response.getBody()).getEmail()).isEqualTo("tenant1@example.com");
         assertThat(Objects.requireNonNull(response.getBody()).getFirstName()).isEqualTo("John");

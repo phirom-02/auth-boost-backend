@@ -1,5 +1,6 @@
 package com.geekybyte.auth_boost_backend.tenant.service;
 
+import com.geekybyte.auth_boost_backend.BaseTest;
 import com.geekybyte.auth_boost_backend.tenant.Tenant;
 import com.geekybyte.auth_boost_backend.tenant.TenantRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +18,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class FindAllTenantsServiceImplTest {
+class FindAllTenantsServiceImplTest extends BaseTest {
 
     @InjectMocks
     FindAllTenantsServiceImpl findAllTenantsService;

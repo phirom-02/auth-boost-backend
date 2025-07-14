@@ -1,5 +1,6 @@
 package com.geekybyte.auth_boost_backend.tenant.service;
 
+import com.geekybyte.auth_boost_backend.BaseTest;
 import com.geekybyte.auth_boost_backend.tenant.Tenant;
 import com.geekybyte.auth_boost_backend.tenant.TenantRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ import java.time.LocalDate;
 @SpringBootTest
 @Testcontainers
 @Transactional
-public class DeleteTenantByIdServiceImplIntegrationTest {
+public class DeleteTenantByIdServiceImplIntegrationTest extends BaseTest {
 
     @Container
     @ServiceConnection

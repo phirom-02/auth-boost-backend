@@ -1,5 +1,6 @@
 package com.geekybyte.auth_boost_backend.tenant.service;
 
+import com.geekybyte.auth_boost_backend.BaseTest;
 import com.geekybyte.auth_boost_backend.tenant.Tenant;
 import com.geekybyte.auth_boost_backend.tenant.TenantRepository;
 import com.geekybyte.auth_boost_backend.tenant.dto.UpdateTenantDto;
@@ -21,7 +22,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 @Testcontainers
 @Transactional
-public class UpdateTenantServiceImplIntegrationTest {
+public class UpdateTenantServiceImplIntegrationTest extends BaseTest {
 
     @Container
     @ServiceConnection
@@ -51,7 +52,7 @@ public class UpdateTenantServiceImplIntegrationTest {
     @Test
     @Rollback
     void shouldReturnTenantAfterUpdate() {
-        int tenantId = 101;
+        int tenantId = 1;
         UpdateTenantDto dto = new UpdateTenantDto("tenant_xyz", null, null, null, null, null);
 
         Tenant updatedTenant = updateTenantService.updateTenant(tenantId, dto);
