@@ -1,5 +1,8 @@
 image: maven:3.9.10-amazoncorretto-21-al2023
 
+before_script:
+  - rm -rf .m2/repository/org/mockito
+
 .default_rules:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
@@ -23,14 +26,30 @@ init:
   cache:
     paths:
       - .m2/repository
-
 test:
   stage: test
   rules:
     - !reference [ .default_rules, rules ]
+  services:
+    - name: postgres:latest
+      alias: postgres
+    - name: docker:28.3.2-dind-alpine3.22
+      alias: docker
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_TLS_CERTDIR: ""
+
+    POSTGRES_DB: testdb
+    POSTGRES_USER: testuser
+    POSTGRES_PASSWORD: testpass
+    SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/testdb
+    SPRING_DATASOURCE_USERNAME: testuser
+    SPRING_DATASOURCE_PASSWORD: testpass
+
   script:
-    - mvn $MAVEN_CLI_OPTS test
+    - mvn $MAVEN_CLI_OPTS -Dspring.profiles.active=test test
   cache:
+    key: maven-deps
     paths:
       - .m2/repository
   artifacts:
