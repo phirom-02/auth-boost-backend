@@ -52,14 +52,7 @@ public class UpdateTenantServiceImplIntegrationTest {
     @Rollback
     void shouldReturnTenantAfterUpdate() {
         int tenantId = 101;
-        UpdateTenantDto dto = new UpdateTenantDto(
-                "tenant_xyz",
-                null,
-                null,
-                null,
-                null,
-                null
-        );
+        UpdateTenantDto dto = new UpdateTenantDto("tenant_xyz", null, null, null, null, null);
 
         Tenant updatedTenant = updateTenantService.updateTenant(tenantId, dto);
 

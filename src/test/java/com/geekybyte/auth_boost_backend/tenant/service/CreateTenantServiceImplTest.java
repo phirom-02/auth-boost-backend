@@ -25,10 +25,10 @@ class CreateTenantServiceImplTest extends BaseTest {
     TenantRepository tenantRepository;
 
     @Test
-    void shouldCreateTenant() {
+    void shouldReturnTenantAfterCreate() {
         // Arrange
         CreateTenantDto dto = new CreateTenantDto(
-                "tenant1",
+                "tenant_1",
                 "tenant1@example.com",
                 "John",
                 null,
