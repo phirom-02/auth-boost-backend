@@ -1,5 +1,6 @@
 package com.geekybyte.auth_boost_backend.tenant;
 
+import com.geekybyte.auth_boost_backend.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @Testcontainers
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class TenantRepositoryIntegrationTest {
+class TenantRepositoryIntegrationTest extends BaseTest {
 
     @Container
     @ServiceConnection
