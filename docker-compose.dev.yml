@@ -12,7 +12,6 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always
-        ;
 
   mail_auth-boost:
     image: axllent/mailpit
