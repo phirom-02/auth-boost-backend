@@ -1,0 +1,9 @@
+server:
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: auth-boost-backend
+  profiles:
+    active: dev
