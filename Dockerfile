@@ -2,8 +2,8 @@ FROM openjdk:22-jdk-oracle as build
 
 WORKDIR /app
 
-COPY target/auth-boost-backend.jar /app/auth-boost-backend.jar
+COPY target/*.jar /app/app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/app/auth-boost-backend.jar"]
+ENTRYPOINT ["java" ,"-jar", "/app/app.jar", "--spring.profiles.active=dev"]

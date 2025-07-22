@@ -6,9 +6,9 @@ services:
       POSTGRES_USER: ${DEV_DATABASE_USER}
       POSTGRES_PASSWORD: ${DEV_DATABASE_PASSWORD}
       POSTGRES_DB: ${DEV_DATABASE_NAME}
-      PORT: ${DEV_DATABASE_PORT:-5435}
-    ports:
-      - "${DEV_DATABASE_PORT:-5435}:5432"
+#      PORT: ${DEV_DATABASE_PORT:-5435}
+#    ports:
+#      - "${DEV_DATABASE_PORT:-5435}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always
@@ -27,7 +27,8 @@ services:
     ports:
       - "8081:8080"
     environment:
-      SPRING_DATASOURCE_URL: ${DEV_DATABASE_URL}
+#      SPRING_DATASOURCE_URL: ${DEV_DATABASE_URL}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://pg_auth-boost:${DEV_DATABASE_PORT}/${DEV_DATABASE_NAME}
       SPRING_DATASOURCE_USERNAME: ${DEV_DATABASE_USER}
       SPRING_DATASOURCE_PASSWORD: ${DEV_DATABASE_PASSWORD}
       SPRING_MAIL_HOST: mail_auth-boost
