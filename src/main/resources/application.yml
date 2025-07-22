@@ -6,4 +6,4 @@ spring:
   application:
     name: auth-boost-backend
   profiles:
-    active: dev
+    active: local

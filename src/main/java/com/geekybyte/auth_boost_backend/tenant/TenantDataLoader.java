@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.util.List;
 
 @Component
-@Profile({"dev"})
+@Profile({"dev", "local"})
 public class TenantDataLoader implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(TenantDataLoader.class);
