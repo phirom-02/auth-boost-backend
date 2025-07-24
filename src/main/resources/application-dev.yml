@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${DEV_DATABASE_URL}
-    username: ${DEV_DATABASE_USER}
-    password: ${DEV_DATABASE_PASSWORD}
+#    url: ${DEV_DATABASE_URL}
+#    username: ${DATABASE_USER}
+#    password: ${DATABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -13,7 +13,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     properties:

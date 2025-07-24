@@ -3,12 +3,12 @@ services:
     image: postgres:latest
     container_name: pg_auth-boost
     environment:
-      POSTGRES_USER: ${LOCAL_DATABASE_USER}
-      POSTGRES_PASSWORD: ${LOCAL_DATABASE_PASSWORD}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_DB: ${LOCAL_DATABASE_NAME}
-      PORT: ${LOCAL_DATABASE_PORT:-5435}
+      PORT: ${DATABASE_PORT:-5435}
     ports:
-      - "${LOCAL_DATABASE_PORT:-5435}:5432"
+      - "${DATABASE_PORT:-5435}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     restart: always
@@ -20,23 +20,6 @@ services:
       - "1025:1025" # SMTP
       - "8025:8025" # Web UI for interactions
     restart: unless-stopped
-
-#  app:
-#    build: .
-#    container_name: auth-boost-backend-dev
-#    ports:
-#      - "8081:8080"
-#    environment:
-##      SPRING_DATASOURCE_URL: ${LOCAL_DATABASE_URL}
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://pg_auth-boost:${LOCAL_DATABASE_PORT}/${LOCAL_DATABASE_NAME}
-#      SPRING_DATASOURCE_USERNAME: ${LOCAL_DATABASE_USER}
-#      SPRING_DATASOURCE_PASSWORD: ${LOCAL_DATABASE_PASSWORD}
-#      SPRING_MAIL_HOST: mail_auth-boost
-#      SPRING_MAIL_PORT: 1025
-#    depends_on:
-#      - pg_auth-boost
-#      - mail_auth-boost
-#    restart: unless-stopped
 
 volumes:
   postgres_data:
